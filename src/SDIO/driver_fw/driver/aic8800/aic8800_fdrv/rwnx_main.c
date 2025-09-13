@@ -787,7 +787,9 @@ static void rwnx_csa_finish(struct work_struct *ws)
 		} else
 			rwnx_txq_vif_stop(vif, RWNX_TXQ_STOP_CHAN, rwnx_hw);
 		spin_unlock_bh(&rwnx_hw->cb_lock);
-#if (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION3)
+#if (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION7)
+		cfg80211_ch_switch_notify(vif->ndev, &csa->chandef, 0);
+#elif (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION3)
 		cfg80211_ch_switch_notify(vif->ndev, &csa->chandef, 0, 0);
 #elif (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION)
 		cfg80211_ch_switch_notify(vif->ndev, &csa->chandef, 0);
@@ -3321,11 +3323,20 @@ end:
  *	interface. This should reject the call when AP mode wasn't started.
  */
 static int rwnx_cfg80211_change_beacon(struct wiphy *wiphy, struct net_device *dev,
+#if (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION7)
+									   struct cfg80211_ap_update *ap)
+#elif (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION6)
+									   struct cfg80211_ap_settings *ap)
+#else
 									   struct cfg80211_beacon_data *info)
+#endif
 {
 	struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
 	struct rwnx_vif *vif = netdev_priv(dev);
 	struct rwnx_bcn *bcn = &vif->ap.bcn;
+#if (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION6)
+	struct cfg80211_beacon_data *info = &ap->beacon;
+#endif
 	struct rwnx_ipc_elem_var elem;
 	u8 *buf;
 	int error = 0;
@@ -4011,6 +4022,9 @@ int rwnx_cfg80211_start_radar_detection(struct wiphy *wiphy,
 									#if (LINUX_VERSION_CODE >= KERNEL_VERSION(3, 15, 0))
 										, u32 cac_time_ms
 									#endif
+									#if (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION7)
+										, int link_id
+									#endif
 										)
 {
 	struct rwnx_hw *rwnx_hw = wiphy_priv(wiphy);
@@ -4151,7 +4165,9 @@ int rwnx_cfg80211_channel_switch (struct wiphy *wiphy,
 		goto end;
 	} else {
 		INIT_WORK(&csa->work, rwnx_csa_finish);
-#if LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION4
+#if LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION7
+		cfg80211_ch_switch_started_notify(dev, &csa->chandef, 0, params->count, false);
+#elif LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION4
 		cfg80211_ch_switch_started_notify(dev, &csa->chandef, 0, params->count, false, 0);
 #elif LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION2
 		cfg80211_ch_switch_started_notify(dev, &csa->chandef, 0, params->count, false);
@@ -4179,6 +4195,9 @@ rwnx_cfg80211_tdls_mgmt(struct wiphy *wiphy,
 	const u8 *peer,
 #else
 	u8 *peer,
+#endif
+#if (LINUX_VERSION_CODE >= HIGH_KERNEL_VERSION5)
+	int link_id,
 #endif
 	u8 action_code,
 	u8 dialog_token,

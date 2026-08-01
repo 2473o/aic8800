@@ -1,3 +1,114 @@
+aic8800 (5.0+git20260123.5f7be68d-7) noble; urgency=medium
+
+  [ Jiali Chen ]
+  * fix: avoid usb reboot hang after suspend
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Thu, 16 Jul 2026 03:50:13 +0000
+
+aic8800 (5.0+git20260123.5f7be68d-6) noble; urgency=medium
+
+  [ ZHANG Yuntian ]
+  * Update pkg.conf
+
+  [ Hoe Hao Cheng ]
+  * Fix Linux 7.1 build
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Fri, 26 Jun 2026 11:30:02 +0000
+
+aic8800 (5.0+git20260123.5f7be68d-5) noble; urgency=medium
+
+  [ Chongbiao Chen ]
+  * fix: use bluez by default
+
+  [ ZHANG Yuntian ]
+  * fix: workaround OOM build failure
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Wed, 29 Apr 2026 10:34:22 +0000
+
+aic8800 (5.0+git20260123.5f7be68d-4) noble; urgency=medium
+
+  [ Chongbiao Chen ]
+  * fix: fix usb build error
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Mon, 13 Apr 2026 06:31:43 +0000
+
+aic8800 (5.0+git20260123.5f7be68d-3) noble; urgency=medium
+
+  [ ZHANG Yuntian ]
+  * Update devcontainer.json
+
+  [ dependabot[bot] ]
+  * chore(deps): bump dependabot/fetch-metadata from 2 to 3
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Fri, 10 Apr 2026 06:57:48 +0000
+
+aic8800 (5.0+git20260123.5f7be68d-2) noble; urgency=medium
+
+  [ Vladislav Tatjanin ]
+  * add riscv64 -> riscv SUBARCH mapping
+
+  [ Chongbiao Chen ]
+  * fix: update patchset
+  * fix: fix vmalloc.h not include
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Wed, 08 Apr 2026 11:45:24 +0000
+
+aic8800 (5.0+git20260123.5f7be68d-1) noble; urgency=medium
+
+  [ dependabot[bot] ]
+  * chore(deps): bump actions/upload-artifact from 5 to 7
+  * chore(deps): bump docker/setup-qemu-action from 3 to 4
+  * chore(deps): bump cachix/cachix-action from 16 to 17
+  * chore(deps): bump actions/deploy-pages from 4 to 5
+  * chore(deps): bump actions/configure-pages from 5 to 6
+  * chore(deps): bump actions/download-artifact from 7 to 8
+
+  [ ZHANG Yuntian ]
+  * feat: update to aic8800d_linux_sdk_V5.0_2026_0123_5f7be68d
+  * fix: update patchset
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Tue, 07 Apr 2026 14:29:01 +0800
+
+aic8800 (4.0+git20250410.b99ca8b6-5) noble; urgency=medium
+
+  [ dependabot[bot] ]
+  * chore(deps): bump actions/download-artifact from 6 to 7
+
+  [ CodeChenL ]
+  * feat: add pkg.conf.template
+
+  [ Jianfeng Liu ]
+  * add fix for linux v6.19
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Tue, 30 Dec 2025 08:12:48 +0000
+
+aic8800 (4.0+git20250410.b99ca8b6-4) noble; urgency=medium
+
+  [ dependabot[bot] ]
+  * chore(deps): bump actions/upload-artifact from 4 to 5
+  * chore(deps): bump actions/checkout from 5 to 6
+  * chore(deps): bump actions/download-artifact from 5 to 6
+
+  [ Feng Zhang ]
+  * fix: add fix-Lower-the-debugging-log-level.patch
+
+  [ ZHANG Yuntian ]
+  * fix: debian/patches shares the license of its target
+  * fix: add GPLv2 license to driver source code
+  * fix: restore lost build config
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Tue, 09 Dec 2025 08:38:42 +0000
+
+aic8800 (4.0+git20250410.b99ca8b6-3) noble; urgency=medium
+
+  [ dependabot[bot] ]
+  * chore(deps): bump actions/upload-pages-artifact from 3 to 4
+
+  [ Jianfeng Liu ]
+  * fix build for linux 6.17
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Tue, 30 Sep 2025 06:02:28 +0000
+
 aic8800 (4.0+git20250410.b99ca8b6-2) noble; urgency=medium
 
   [ dependabot[bot] ]

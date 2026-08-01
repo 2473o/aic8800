@@ -19,3 +19,14 @@
 
 # Output folder
 /out
+
+# Out-of-tree kernel module build artifacts
+*.o
+*.o.d
+*.ko
+*.mod
+*.mod.c
+*.cmd
+*.symvers
+*.order
+.tmp_versions/
